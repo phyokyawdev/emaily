@@ -1,9 +1,9 @@
 const express = require("express");
+require("./services/passport");
+
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send({ bye: "buddy" });
-});
+require("./routes/authRoutes")(app);
 
 // Heroku inject PORT env variable
 const PORT = process.env.PORT || 5000;
