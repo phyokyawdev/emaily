@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER } from "./types";
+import { FETCH_USER, FETCH_SURVEY } from "./types";
 
 // when redux-thunk see we return a function
 // instead of action, it call the function
@@ -21,4 +21,9 @@ export const submitSurvey = (values, history) => async (dispatch) => {
 
   history.push("/surveys");
   dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchSurveys = () => async (dispatch) => {
+  const res = await axios.get("/api/surveys");
+  dispatch({ type: FETCH_SURVEY, payload: res.data });
 };
